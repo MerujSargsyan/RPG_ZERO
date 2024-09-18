@@ -1,8 +1,9 @@
 package com.main.RPG_ZERO;
 
-import com.raylib.Raylib.*;
+import static com.raylib.Raylib.*;
+import static com.raylib.Jaylib.BLACK;
 
-public class Player {
+public class Player implements Drawable {
     public Vector2 pos;
     public Texture txt;
     public float speed;
@@ -17,5 +18,10 @@ public class Player {
     public void updatePos(Vector2 vec) {
         pos.x(pos.x() + vec.x());
         pos.y(pos.y() + vec.y());
+    }
+
+    @Override
+    public void draw() {
+        DrawRectangleV(pos, new Vector2().x(50).y(50), BLACK);
     }
 }
