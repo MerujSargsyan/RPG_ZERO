@@ -7,12 +7,18 @@ import java.util.ArrayList;
 
 public class App {
     private ArrayList<Drawable> drawables;
+    private Camera2D camera;
 
     public App() {
         drawables = new ArrayList<>();
 
         Player p = new Player(225, 225);
         drawables.add(p);
+
+        camera = new Camera2D().target(p.pos)
+            .offset(new Vector2().x(225).y(225));
+        camera.rotation(0.0f);
+        camera.zoom(1.0f);
 
         Obstacle o = new Obstacle(0, 0, 200, 100);
         drawables.add(o);
@@ -22,9 +28,11 @@ public class App {
 
         while(!WindowShouldClose()) {
             BeginDrawing();
-            parseInput(p);
-            drawSprites();
             ClearBackground(WHITE);
+            parseInput(p);
+            BeginMode2D(camera);
+            drawSprites();
+            EndMode2D();
             EndDrawing();
         }
         CloseWindow();
@@ -45,6 +53,7 @@ public class App {
 
         Vector2Normalize(movement);
         p.updatePos(movement);
+        camera.target(p.pos);
     }
 
     public static void main(String[] args) {

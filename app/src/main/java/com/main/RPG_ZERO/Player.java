@@ -10,7 +10,7 @@ public class Player implements Drawable {
 
     public Player(float x, float y) {
         pos = new Vector2().x(x).y(y);
-        speed = 5.0f;
+        speed = 7.0f;
         // drawTexture
     }
 
