@@ -5,13 +5,29 @@ package com.main.RPG_ZERO;
 
 import static com.raylib.Raylib.*;
 import static com.raylib.Jaylib.WHITE;
+import static com.raylib.Jaylib.BLACK;
 
 public class App {
+    private void parseInput(Player p) {
+        Vector2 movement = new Vector2();
+        if(IsKeyDown(KEY_D)) movement.x(1 * p.speed);
+        if(IsKeyDown(KEY_A)) movement.x(-1 * p.speed);
+        if(IsKeyDown(KEY_W)) movement.y(-1 * p.speed);
+        if(IsKeyDown(KEY_S)) movement.y(1 * p.speed);
+
+        Vector2Normalize(movement);
+        p.updatePos(movement);
+    }
+
     public String getGreeting() {
+        Player p = new Player(250, 250);
         InitWindow(500, 500, "Hello World!");
         SetTargetFPS(30);
+
         while(!WindowShouldClose()) {
             BeginDrawing();
+            DrawRectangleV(p.pos, new Vector2().x(50).y(50), BLACK);
+            parseInput(p);
             ClearBackground(WHITE);
             EndDrawing();
         }
