@@ -1,7 +1,8 @@
 package com.main.RPG_ZERO;
 
 import static com.raylib.Raylib.*;
-import static com.raylib.Jaylib.BLACK;
+import com.raylib.Jaylib.Vector2;
+import com.raylib.Jaylib.Rectangle;
 import static com.raylib.Jaylib.ORANGE;
 
 public class Player implements Drawable {
@@ -13,8 +14,8 @@ public class Player implements Drawable {
     private final int PLAYER_SIZE = 50; 
 
     public Player(float x, float y) {
-        pos = new Vector2().x(x).y(y);
-        collisionBox = new Rectangle().x(x).y(y).width(PLAYER_SIZE).height(PLAYER_SIZE);
+        pos = new Vector2(x, y);
+        collisionBox = new Rectangle(x, y, PLAYER_SIZE, PLAYER_SIZE);
         speed = 7.0f;
         // drawTexture
     }
@@ -33,7 +34,7 @@ public class Player implements Drawable {
 
     @Override
     public void draw() {
-        DrawRectangleV(pos, new Vector2().x(50).y(50), ORANGE);
+        DrawRectangleV(pos, new Vector2(50, 50), ORANGE);
     }
 
     @Override

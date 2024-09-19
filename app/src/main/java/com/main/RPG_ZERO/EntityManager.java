@@ -29,7 +29,7 @@ public class EntityManager {
 
     public void handleCollision() {
         // TODO: use spatial paritioning to speed this up
-        Player p = (Player)entities.get(0);
+        Player p = (Player)entities.get(playerIdx);
         for(int i = 1; i < entities.size(); i++) {
             Rectangle playerRect = p.getCollisionBox();
             Rectangle entRect = entities.get(i).getCollisionBox();

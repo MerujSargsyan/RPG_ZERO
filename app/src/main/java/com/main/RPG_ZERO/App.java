@@ -1,14 +1,13 @@
 package com.main.RPG_ZERO;
 
 import static com.raylib.Raylib.*;
-import static com.raylib.Jaylib.WHITE;
 
-import java.util.ArrayList;
+import com.raylib.Jaylib.Vector2;
+import static com.raylib.Jaylib.WHITE;
 
 public class App {
     private int WINDOW_WIDTH = 500;
     private int WINDOW_HEIGHT = 500;
-    private ArrayList<Drawable> drawables;
     private Camera2D camera;
     private EntityManager em;
 
