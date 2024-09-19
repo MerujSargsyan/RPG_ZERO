@@ -10,12 +10,13 @@ public class App {
     private int WINDOW_HEIGHT = 500;
     private ArrayList<Drawable> drawables;
     private Camera2D camera;
+    private EntityManager em;
 
     public App() {
-        drawables = new ArrayList<>();
+        em = new EntityManager();
 
         Player p = new Player(WINDOW_WIDTH/2 - 25, WINDOW_HEIGHT/2 - 25);
-        drawables.add(p);
+        em.addEntity(p);
 
         camera = new Camera2D().target(p.pos)
             .offset(p.pos);
@@ -23,9 +24,9 @@ public class App {
         camera.zoom(1.0f);
 
         Obstacle o = new Obstacle(0, 0, 200, 100);
-        drawables.add(o);
+        em.addEntity(o);
         Obstacle o2 = new Obstacle(WINDOW_HEIGHT, WINDOW_WIDTH, 100, 100);
-        drawables.add(o2);
+        em.addEntity(o2);
 
         InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Hello World!");
         SetTargetFPS(30);
@@ -35,17 +36,12 @@ public class App {
             ClearBackground(WHITE);
             parseInput(p);
             BeginMode2D(camera);
-            drawSprites();
+            em.handleCollision();
+            em.render();
             EndMode2D();
             EndDrawing();
         }
         CloseWindow();
-    }
-
-    public void drawSprites() {
-        drawables.forEach((sprite) -> {
-            sprite.draw();
-        });
     }
 
     private void parseInput(Player p) {
