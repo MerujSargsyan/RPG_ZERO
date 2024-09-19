@@ -6,6 +6,7 @@ import static com.raylib.Jaylib.BLACK;
 public class Obstacle implements Drawable {
     public Vector2 pos;
     public Vector2 size;
+    public Vector2 collisionBox;
 
     public Obstacle(float x, float y, int width, int height) {
         pos = new Vector2().x(x).y(y);

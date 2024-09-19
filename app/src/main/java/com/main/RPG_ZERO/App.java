@@ -6,24 +6,28 @@ import static com.raylib.Jaylib.WHITE;
 import java.util.ArrayList;
 
 public class App {
+    private int WINDOW_WIDTH = 500;
+    private int WINDOW_HEIGHT = 500;
     private ArrayList<Drawable> drawables;
     private Camera2D camera;
 
     public App() {
         drawables = new ArrayList<>();
 
-        Player p = new Player(225, 225);
+        Player p = new Player(WINDOW_WIDTH/2 - 25, WINDOW_HEIGHT/2 - 25);
         drawables.add(p);
 
         camera = new Camera2D().target(p.pos)
-            .offset(new Vector2().x(225).y(225));
+            .offset(p.pos);
         camera.rotation(0.0f);
         camera.zoom(1.0f);
 
         Obstacle o = new Obstacle(0, 0, 200, 100);
         drawables.add(o);
+        Obstacle o2 = new Obstacle(WINDOW_HEIGHT, WINDOW_WIDTH, 100, 100);
+        drawables.add(o2);
 
-        InitWindow(500, 500, "Hello World!");
+        InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Hello World!");
         SetTargetFPS(30);
 
         while(!WindowShouldClose()) {
