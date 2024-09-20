@@ -6,5 +6,6 @@ import static com.raylib.Raylib.Color;
 public interface Drawable {
     public abstract Rectangle getCollisionBox();
     public abstract void setColor(Color c);
+    public abstract Rectangle getInteractionBox();
     public abstract void draw();
 }

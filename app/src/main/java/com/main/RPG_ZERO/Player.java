@@ -61,4 +61,9 @@ public class Player implements Drawable {
     public Rectangle getCollisionBox() {
         return collisionBox;
     }
+
+    @Override
+    public Rectangle getInteractionBox() {
+        return null;
+    }
 }
