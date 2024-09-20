@@ -2,6 +2,9 @@ package com.main.RPG_ZERO;
 
 import static com.raylib.Raylib.*;
 import com.raylib.Jaylib.Rectangle;
+import com.raylib.Jaylib.Vector2;
+import static com.raylib.Jaylib.RED;
+import static com.raylib.Jaylib.BLACK;
 
 import java.util.ArrayList;
 
@@ -35,7 +38,10 @@ public class EntityManager {
         for(int i = 1; i < entities.size(); i++) {
             Rectangle entRect = entities.get(i).getCollisionBox();
             if(CheckCollisionRecs(predictedColl, entRect)) {
+                entities.get(i).setColor(RED);
                 return false;
+            } else {
+                entities.get(i).setColor(BLACK);
             }
         }
 

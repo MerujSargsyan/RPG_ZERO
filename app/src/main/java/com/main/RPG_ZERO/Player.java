@@ -4,12 +4,12 @@ import static com.raylib.Raylib.*;
 import com.raylib.Jaylib.Vector2;
 import com.raylib.Jaylib.Rectangle;
 import static com.raylib.Jaylib.BLUE;
-import static com.raylib.Jaylib.RED;
 
 public class Player implements Drawable {
     private Vector2 pos;
     private Rectangle collisionBox;
-    private final int COLL_OFFSET = 1;
+    private Color col;
+
     public Texture txt;
     public float speed;
 
@@ -18,15 +18,21 @@ public class Player implements Drawable {
     public Player(float x, float y) {
         pos = new Vector2(x, y);
         collisionBox = new Rectangle(x - PLAYER_SIZE/2, y - PLAYER_SIZE/2, 
-            PLAYER_SIZE + COLL_OFFSET, PLAYER_SIZE + COLL_OFFSET);
+            PLAYER_SIZE, PLAYER_SIZE);
         speed = 7.0f;
+        col = BLUE;
         // drawTexture
     }
 
     // vec must be normalized
-    public void updatePos(Vector2 vec) {
-        pos.x(pos.x() + vec.x());
-        pos.y(pos.y() + vec.y());
+    public void updatePos(Vector2 vect) {
+        pos.x((pos.x() + vect.x()));
+        pos.y((pos.y() + vect.y()));
+        collisionBox.x(pos.x()).y(pos.y());
+    }
+
+    public void updatePosExact(Vector2 vect) {
+        pos = vect;
         collisionBox.x(pos.x()).y(pos.y());
     }
 
@@ -38,13 +44,17 @@ public class Player implements Drawable {
         pos = vect;
 
         collisionBox = new Rectangle(pos.x() - PLAYER_SIZE/2, pos.y() - PLAYER_SIZE/2, 
-            PLAYER_SIZE + COLL_OFFSET, PLAYER_SIZE + COLL_OFFSET);
+            PLAYER_SIZE, PLAYER_SIZE);
     }
 
     @Override
     public void draw() {
-        DrawRectangleRec(collisionBox, RED);
-        DrawRectangleV(pos, new Vector2(50, 50), BLUE);
+        DrawRectangleV(pos, new Vector2(50, 50), col);
+    }
+
+    @Override
+    public void setColor(Color c) {
+        col = c;
     }
 
     @Override
