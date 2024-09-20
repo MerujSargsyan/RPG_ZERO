@@ -37,14 +37,17 @@ public class EntityManager {
 
         for(int i = 1; i < entities.size(); i++) {
             Rectangle entRect = entities.get(i).getCollisionBox();
+            Drawable obj = entities.get(i);
+
+            if(CheckCollisionRecs(currColl, obj.getInteractionBox())) {
+                obj.setColor(RED);
+            } else {
+                obj.setColor(BLACK);
+            }
+
             if(CheckCollisionRecs(predictedColl, entRect)) {
-                if(CheckCollisionRecs(currColl, entities.get(i).getInteractionBox())) {
-                    entities.get(i).setColor(RED);
-                } else {
-                    entities.get(i).setColor(BLACK);
-                }
                 return false;
-            } 
+            }
         }
 
         return true;
