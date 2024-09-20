@@ -35,7 +35,6 @@ public class App {
             ClearBackground(WHITE);
             parseInput(p);
             BeginMode2D(camera);
-            em.handleCollision();
             em.render();
             EndMode2D();
             EndDrawing();
@@ -51,8 +50,10 @@ public class App {
         if(IsKeyDown(KEY_S)) movement.y(1 * p.speed);
 
         Vector2Normalize(movement);
-        p.updatePos(movement);
-        camera.target(p.pos);
+        if(em.validateMovement(movement)) {
+            p.updatePos(movement);
+            camera.target(p.pos);
+        }
     }
 
     public static void main(String[] args) {

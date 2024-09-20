@@ -22,11 +22,6 @@ public class Player implements Drawable {
 
     // vec must be normalized
     public void updatePos(Vector2 vec) {
-        // extract to different class CollisionManager
-        /*Vector2 futurePos = new Vector2().x(pos.x() + vec.x()).y(pos.y() + vec.y());
-        Rectangle xPotRect = collisionBox;
-        xPotRect.x(collisionBox.x() + futurePos.x());*/
-
         pos.x(pos.x() + vec.x());
         pos.y(pos.y() + vec.y());
         collisionBox.x(pos.x()).y(pos.y());

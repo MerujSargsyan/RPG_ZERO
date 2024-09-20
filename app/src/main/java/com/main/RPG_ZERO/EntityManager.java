@@ -27,13 +27,21 @@ public class EntityManager {
         entities.forEach((ent) -> ent.draw());
     }
 
-    public void handleCollision() {
+    public boolean checkCollision(Rectangle rect) {
         // TODO: use spatial paritioning to speed this up
-        Player p = (Player)entities.get(playerIdx);
         for(int i = 1; i < entities.size(); i++) {
-            Rectangle playerRect = p.getCollisionBox();
             Rectangle entRect = entities.get(i).getCollisionBox();
-            System.out.println(CheckCollisionRecs(playerRect, entRect));
+            if(CheckCollisionRecs(rect, entRect)) return true;
         }
+
+        return false;
+    }
+
+    public boolean validateMovement(Vector2 vect) {
+        Player player = (Player)entities.get(0);
+        Rectangle currColl = player.getCollisionBox();
+        Rectangle predictedColl = currColl.x(currColl.x() + vect.x()).y(currColl.y() + vect.y());
+        
+        return !checkCollision(predictedColl);
     }
 }
