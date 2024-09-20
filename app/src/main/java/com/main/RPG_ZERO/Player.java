@@ -3,19 +3,22 @@ package com.main.RPG_ZERO;
 import static com.raylib.Raylib.*;
 import com.raylib.Jaylib.Vector2;
 import com.raylib.Jaylib.Rectangle;
-import static com.raylib.Jaylib.ORANGE;
+import static com.raylib.Jaylib.BLUE;
+import static com.raylib.Jaylib.RED;
 
 public class Player implements Drawable {
-    public Vector2 pos;
+    private Vector2 pos;
+    private Rectangle collisionBox;
+    private final int COLL_OFFSET = 1;
     public Texture txt;
-    public Rectangle collisionBox;
     public float speed;
 
     private final int PLAYER_SIZE = 50; 
 
     public Player(float x, float y) {
         pos = new Vector2(x, y);
-        collisionBox = new Rectangle(x, y, PLAYER_SIZE, PLAYER_SIZE);
+        collisionBox = new Rectangle(x - PLAYER_SIZE/2, y - PLAYER_SIZE/2, 
+            PLAYER_SIZE + COLL_OFFSET, PLAYER_SIZE + COLL_OFFSET);
         speed = 7.0f;
         // drawTexture
     }
@@ -27,9 +30,21 @@ public class Player implements Drawable {
         collisionBox.x(pos.x()).y(pos.y());
     }
 
+    public Vector2 getPos() {
+        return pos;
+    }
+
+    public void setPos(Vector2 vect) {
+        pos = vect;
+
+        collisionBox = new Rectangle(pos.x() - PLAYER_SIZE/2, pos.y() - PLAYER_SIZE/2, 
+            PLAYER_SIZE + COLL_OFFSET, PLAYER_SIZE + COLL_OFFSET);
+    }
+
     @Override
     public void draw() {
-        DrawRectangleV(pos, new Vector2(50, 50), ORANGE);
+        DrawRectangleRec(collisionBox, RED);
+        DrawRectangleV(pos, new Vector2(50, 50), BLUE);
     }
 
     @Override

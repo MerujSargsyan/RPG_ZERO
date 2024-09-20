@@ -17,8 +17,8 @@ public class App {
         Player p = new Player(WINDOW_WIDTH/2 - 25, WINDOW_HEIGHT/2 - 25);
         em.addEntity(p);
 
-        camera = new Camera2D().target(p.pos)
-            .offset(p.pos);
+        camera = new Camera2D().target(p.getPos())
+            .offset(p.getPos());
         camera.rotation(0.0f);
         camera.zoom(1.0f);
 
@@ -52,7 +52,7 @@ public class App {
         Vector2Normalize(movement);
         if(em.validateMovement(movement)) {
             p.updatePos(movement);
-            camera.target(p.pos);
+            camera.target(p.getPos());
         }
     }
 
