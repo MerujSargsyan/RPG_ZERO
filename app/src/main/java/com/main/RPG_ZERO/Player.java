@@ -5,7 +5,7 @@ import com.raylib.Jaylib.Vector2;
 import com.raylib.Jaylib.Rectangle;
 import static com.raylib.Jaylib.BLUE;
 
-public class Player implements Drawable {
+public class Player implements Entity {
     private Vector2 pos;
     private Rectangle collisionBox;
     private Color col;

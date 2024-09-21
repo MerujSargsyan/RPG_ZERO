@@ -9,16 +9,16 @@ import static com.raylib.Jaylib.BLACK;
 import java.util.ArrayList;
 
 public class EntityManager {
-    private ArrayList<Drawable> entities;
+    private ArrayList<Entity> entities;
 
     public EntityManager() {
         entities = new ArrayList<>();
     }
 
-    public void addEntity(Drawable entity) {
+    public void addEntity(Entity entity) {
         entities.add(entity);
         if(entity instanceof Player) {
-            Drawable temp = entities.get(entities.size() - 1);
+            Entity temp = entities.get(entities.size() - 1);
             entities.set(entities.size() - 1, entities.get(0));
             entities.set(0, temp);
         }
@@ -37,10 +37,13 @@ public class EntityManager {
 
         for(int i = 1; i < entities.size(); i++) {
             Rectangle entRect = entities.get(i).getCollisionBox();
-            Drawable obj = entities.get(i);
+            Entity obj = entities.get(i);
 
             if(CheckCollisionRecs(currColl, obj.getInteractionBox())) {
                 obj.setColor(RED);
+                if(IsKeyDown(KEY_E)) {
+                    Interaction act = new Interaction(obj);
+                }
             } else {
                 obj.setColor(BLACK);
             }

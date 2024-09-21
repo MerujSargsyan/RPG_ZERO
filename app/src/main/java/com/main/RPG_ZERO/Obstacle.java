@@ -7,7 +7,7 @@ import static com.raylib.Jaylib.YELLOW;
 import com.raylib.Jaylib.Rectangle;
 import com.raylib.Jaylib.Vector2;;
 
-public class Obstacle implements Drawable {
+public class Obstacle implements Entity {
     public Vector2 pos;
     public Vector2 size;
     public Rectangle collisionBox;
