@@ -6,8 +6,8 @@ import com.raylib.Jaylib.Vector2;
 import static com.raylib.Jaylib.WHITE;
 
 public class App {
-    private int WINDOW_WIDTH = 500;
-    private int WINDOW_HEIGHT = 500;
+    public static final int WINDOW_WIDTH = 500;
+    public static final int WINDOW_HEIGHT = 500;
     private Camera2D camera;
     private EntityManager em;
 
@@ -22,8 +22,9 @@ public class App {
         camera.rotation(0.0f);
         camera.zoom(1.0f);
 
-        Obstacle o = new Obstacle(0, 0, 200, 100);
-        em.addEntity(o);
+        Entity e1 = new NPC(0, 0, 200, 100, "BOT 1",
+            "Hello World!");
+        em.addEntity(e1);
         Obstacle o2 = new Obstacle(WINDOW_HEIGHT, WINDOW_WIDTH, 100, 100);
         em.addEntity(o2);
 

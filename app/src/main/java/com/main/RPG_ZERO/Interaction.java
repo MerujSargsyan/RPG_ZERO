@@ -24,4 +24,9 @@ public class Interaction {
             type = InteractionType.NONE;
         }
     }
+
+    public void processInteraction() {
+        // TODO swich for this
+        DialogueBox db = new DialogueBox((NPC)ent);
+    }
 }

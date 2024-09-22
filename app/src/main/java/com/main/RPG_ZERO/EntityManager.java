@@ -43,6 +43,7 @@ public class EntityManager {
                 obj.setColor(RED);
                 if(IsKeyDown(KEY_E)) {
                     Interaction act = new Interaction(obj);
+                    act.processInteraction();
                 }
             } else {
                 obj.setColor(BLACK);
