@@ -1,8 +1,11 @@
 package com.main.RPG_ZERO;
 
 public class Interaction {
+    public static boolean active = false;
+
     private Entity ent;
     private InteractionType type;
+    private DialogueBox db;
 
     private enum InteractionType {
         NONE,
@@ -12,6 +15,10 @@ public class Interaction {
     }
 
     public Interaction(Entity ent) {
+        
+    }
+
+    private void startInteraction(Entity ent) {
         this.ent = ent;
 
         if(ent instanceof Enemy) {
@@ -23,10 +30,18 @@ public class Interaction {
         } else {
             type = InteractionType.NONE;
         }
+
+        db = new DialogueBox();
     }
 
-    public void processInteraction() {
+    public void processInteraction(Entity ent) {
         // TODO swich for this
-        DialogueBox db = new DialogueBox((NPC)ent);
+        if(!active) {
+            active = true;
+            startInteraction(ent);
+        } else {
+            if(db.done) active = false;
+            db.step((NPC)ent);
+        }
     }
 }
