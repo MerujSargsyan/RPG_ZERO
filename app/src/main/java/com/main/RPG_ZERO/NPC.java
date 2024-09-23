@@ -25,4 +25,8 @@ public class NPC extends Obstacle {
     public boolean isStreamFinished() {
         return curr >= dialogue.length();
     }
+
+    public void resetDialogue() {
+        curr = 0;
+    }
 }

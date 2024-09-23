@@ -39,6 +39,7 @@ public class Interaction {
         if(!active) {
             active = true;
             startInteraction(ent);
+            db.resetDialogue((NPC)ent);
         } else {
             if(db.done) active = false;
             db.step((NPC)ent);

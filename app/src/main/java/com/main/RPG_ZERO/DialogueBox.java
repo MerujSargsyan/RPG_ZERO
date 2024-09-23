@@ -10,12 +10,19 @@ public class DialogueBox {
     private final int BOX_WIDTH = App.WINDOW_WIDTH - 50;
     private final long CHAR_WAIT_TIME = 200l; 
 
-    public void step(NPC ent) {
+    public DialogueBox() {
         dialogue = "";
+    }
+
+    public void step(NPC ent) {
         if(ent.isStreamFinished()) done = true;
         GuiMessageBox(new Rectangle(50, App.WINDOW_HEIGHT - BOX_HEIGHT - 50,
             BOX_WIDTH, BOX_HEIGHT), "TEST", dialogue, "");
         dialogue += ent.continueStream();
+    }
 
+    public void resetDialogue(NPC ent) {
+        dialogue = "";
+        ent.resetDialogue();
     }
 }
