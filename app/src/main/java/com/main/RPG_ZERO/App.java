@@ -23,7 +23,9 @@ public class App {
         camera.zoom(1.0f);
 
         Entity e1 = new NPC(0, 0, 200, 100, "BOT 1",
-            "Hello World!");
+            "Hanging off mywasteline is a rock, pow pow! , I don't throw no bottbles I throw shots!\n" +
+                "this is testing what happens if I have a lot of text in this text box ideally\n" +
+                "It shold wrap around and fit within the box but God knows");
         em.addEntity(e1);
         Obstacle o2 = new Obstacle(WINDOW_HEIGHT, WINDOW_WIDTH, 100, 100);
         em.addEntity(o2);

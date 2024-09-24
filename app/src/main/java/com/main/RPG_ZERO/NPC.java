@@ -1,20 +1,32 @@
 package com.main.RPG_ZERO;
 
+// dialogue acts like an itterator
 public class NPC extends Obstacle {
     public String name;
     private String dialogue;
-    private StringBuffer dialogueStream; 
+    private int curr;
 
     public NPC(float x, float y, int width, int height, 
         String name, String dialogue) {
         super(x, y, width, height);
         this.name = name;
         this.dialogue = dialogue;
-        dialogueStream = new StringBuffer();
+        curr = 0; // start at 0th index of string
     }
 
-    public String continueStream() {
-        // temp
-        return dialogue;
+    public char continueStream() {
+        if(curr < dialogue.length()) {
+            return dialogue.charAt(curr++);
+        }
+
+        return '\0';
+    }
+
+    public boolean isStreamFinished() {
+        return curr >= dialogue.length();
+    }
+
+    public void resetDialogue() {
+        curr = 0;
     }
 }

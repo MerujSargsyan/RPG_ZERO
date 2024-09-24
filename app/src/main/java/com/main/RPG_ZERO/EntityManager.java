@@ -10,9 +10,11 @@ import java.util.ArrayList;
 
 public class EntityManager {
     private ArrayList<Entity> entities;
+    private Interaction im;
 
     public EntityManager() {
         entities = new ArrayList<>();
+        im = null;
     }
 
     public void addEntity(Entity entity) {
@@ -41,9 +43,16 @@ public class EntityManager {
 
             if(CheckCollisionRecs(currColl, obj.getInteractionBox())) {
                 obj.setColor(RED);
-                if(IsKeyDown(KEY_E)) {
-                    Interaction act = new Interaction(obj);
-                    act.processInteraction();
+                if(im == null && IsKeyPressed(KEY_E)) {
+                    im = new Interaction(obj);
+                    im.startInteraction(obj);
+                }
+                if(im != null && im.active) {
+                    im.processInteraction(obj);
+                    player.moveable = false;
+                } else if(im != null && !im.active) {
+                    im = null;
+                    player.moveable = true;
                 }
             } else {
                 obj.setColor(BLACK);

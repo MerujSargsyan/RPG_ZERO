@@ -1,8 +1,13 @@
 package com.main.RPG_ZERO;
 
+import static com.raylib.Raylib.*;
+
 public class Interaction {
+    public boolean active = false;
+
     private Entity ent;
     private InteractionType type;
+    private DialogueBox db;
 
     private enum InteractionType {
         NONE,
@@ -12,7 +17,12 @@ public class Interaction {
     }
 
     public Interaction(Entity ent) {
+        
+    }
+
+    public void startInteraction(Entity ent) {
         this.ent = ent;
+        active = true;
 
         if(ent instanceof Enemy) {
             type = InteractionType.COMBAT;
@@ -23,10 +33,17 @@ public class Interaction {
         } else {
             type = InteractionType.NONE;
         }
+
+        // TODO: figure out how to structure this
+        db = new DialogueBox();
+        db.resetDialogue((NPC)ent);
     }
 
-    public void processInteraction() {
+    public void processInteraction(Entity ent) {
         // TODO swich for this
-        DialogueBox db = new DialogueBox((NPC)ent);
+        if(db.done && IsKeyPressed(KEY_ENTER)) {
+            active = false;
+        }
+        db.step((NPC)ent);
     }
 }
