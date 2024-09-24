@@ -34,7 +34,9 @@ public class Interaction {
             type = InteractionType.NONE;
         }
 
+        // TODO: figure out how to structure this
         db = new DialogueBox();
+        db.resetDialogue((NPC)ent);
     }
 
     public void processInteraction(Entity ent) {

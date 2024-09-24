@@ -8,7 +8,6 @@ public class DialogueBox {
     private String dialogue;
     private final int BOX_HEIGHT = 100;
     private final int BOX_WIDTH = App.WINDOW_WIDTH - 50;
-    private final long CHAR_WAIT_TIME = 200l; 
 
     public DialogueBox() {
         dialogue = "";

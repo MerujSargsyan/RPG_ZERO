@@ -12,6 +12,7 @@ public class Player implements Entity {
 
     public Texture txt;
     public float speed;
+    public boolean moveable;
 
     private final int PLAYER_SIZE = 50; 
 
@@ -21,6 +22,7 @@ public class Player implements Entity {
             PLAYER_SIZE, PLAYER_SIZE);
         speed = 7.0f;
         col = BLUE;
+        moveable = true;
         // drawTexture
     }
 

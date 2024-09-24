@@ -47,7 +47,13 @@ public class EntityManager {
                     im = new Interaction(obj);
                     im.startInteraction(obj);
                 }
-                if(im != null && im.active) im.processInteraction(obj);
+                if(im != null && im.active) {
+                    im.processInteraction(obj);
+                    player.moveable = false;
+                } else if(im != null && !im.active) {
+                    im = null;
+                    player.moveable = true;
+                }
             } else {
                 obj.setColor(BLACK);
             }
