@@ -42,9 +42,12 @@ public class EntityManager {
             Entity obj = entities.get(i);
 
             if(CheckCollisionRecs(currColl, obj.getInteractionBox())) {
-                if(im == null && IsKeyPressed(KEY_E)) im = new Interaction(obj);
-                if(im != null) im.processInteraction(obj);
                 obj.setColor(RED);
+                if(im == null && IsKeyPressed(KEY_E)) {
+                    im = new Interaction(obj);
+                    im.startInteraction(obj);
+                }
+                if(im != null && im.active) im.processInteraction(obj);
             } else {
                 obj.setColor(BLACK);
             }

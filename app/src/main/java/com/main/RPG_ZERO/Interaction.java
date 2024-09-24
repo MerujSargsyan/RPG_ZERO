@@ -1,7 +1,9 @@
 package com.main.RPG_ZERO;
 
+import static com.raylib.Raylib.*;
+
 public class Interaction {
-    public static boolean active = false;
+    public boolean active = false;
 
     private Entity ent;
     private InteractionType type;
@@ -18,8 +20,9 @@ public class Interaction {
         
     }
 
-    private void startInteraction(Entity ent) {
+    public void startInteraction(Entity ent) {
         this.ent = ent;
+        active = true;
 
         if(ent instanceof Enemy) {
             type = InteractionType.COMBAT;
@@ -36,13 +39,9 @@ public class Interaction {
 
     public void processInteraction(Entity ent) {
         // TODO swich for this
-        if(!active) {
-            active = true;
-            startInteraction(ent);
-            db.resetDialogue((NPC)ent);
-        } else {
-            if(db.done) active = false;
-            db.step((NPC)ent);
+        if(db.done && IsKeyPressed(KEY_ENTER)) {
+            active = false;
         }
+        db.step((NPC)ent);
     }
 }
