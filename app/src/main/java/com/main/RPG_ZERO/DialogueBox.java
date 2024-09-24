@@ -24,4 +24,8 @@ public class DialogueBox {
         dialogue = "";
         ent.resetDialogue();
     }
+
+    public void flush(NPC ent) {
+        while(!ent.isStreamFinished()) dialogue += ent.continueStream();
+    }
 }

@@ -27,7 +27,7 @@ public class App {
                 "this is testing what happens if I have a lot of text in this text box ideally\n" +
                 "It shold wrap around and fit within the box but God knows");
         em.addEntity(e1);
-        Obstacle o2 = new Obstacle(WINDOW_HEIGHT, WINDOW_WIDTH, 100, 100);
+        NPC o2 = new NPC(WINDOW_HEIGHT, WINDOW_WIDTH, 100, 100, "BOT 2", "I just say\n HELLO WORLD!");
         em.addEntity(o2);
 
         InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Hello World!");
@@ -54,7 +54,7 @@ public class App {
 
         Vector2Normalize(movement);
         if(em.validateMovement(movement)) {
-            p.updatePos(movement);
+            if(p.moveable) p.updatePos(movement);
             camera.target(p.getPos());
         }
     }

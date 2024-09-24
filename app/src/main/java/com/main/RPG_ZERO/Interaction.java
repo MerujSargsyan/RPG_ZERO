@@ -41,6 +41,7 @@ public class Interaction {
 
     public void processInteraction(Entity ent) {
         // TODO swich for this
+        if(IsKeyDown(KEY_ENTER)) db.flush((NPC)ent);
         if(db.done && IsKeyPressed(KEY_ENTER)) {
             active = false;
         }
