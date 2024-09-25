@@ -1,10 +1,12 @@
 package com.main.RPG_ZERO;
 
 import static com.raylib.Raylib.*;
+import static com.raylib.Jaylib.Vector2;
 
 public class Interaction {
     public boolean active = false;
 
+    private Vector2 playerPos;
     private Entity ent;
     private InteractionType type;
     private DialogueBox db;
@@ -16,12 +18,12 @@ public class Interaction {
         COMBAT
     }
 
-    public Interaction(Entity ent) {
-        
+    public Interaction(Entity ent, Vector2 playerPos) {
+        this.ent = ent;
+        this.playerPos = playerPos;
     }
 
-    public void startInteraction(Entity ent) {
-        this.ent = ent;
+    public void startInteraction() {
         active = true;
 
         if(ent instanceof Enemy) {
@@ -35,11 +37,11 @@ public class Interaction {
         }
 
         // TODO: figure out how to structure this
-        db = new DialogueBox();
+        db = new DialogueBox(playerPos);
         db.resetDialogue((NPC)ent);
     }
 
-    public void processInteraction(Entity ent) {
+    public void processInteraction() {
         // TODO swich for this
         if(IsKeyDown(KEY_ENTER)) db.flush((NPC)ent);
         if(db.done && IsKeyPressed(KEY_ENTER)) {

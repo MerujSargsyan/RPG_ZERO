@@ -8,9 +8,11 @@ public class DialogueBox {
     private String dialogue;
     private final int BOX_HEIGHT = 100;
     private final int BOX_WIDTH = App.WINDOW_WIDTH - 50;
+    private Vector2 playerPos;
 
-    public DialogueBox() {
+    public DialogueBox(Vector2 playerPos) {
         dialogue = "";
+        this.playerPos = playerPos;
     }
 
     private void drawWindow() {
