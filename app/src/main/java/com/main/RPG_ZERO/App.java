@@ -36,9 +36,9 @@ public class App {
         while(!WindowShouldClose()) {
             BeginDrawing();
             ClearBackground(WHITE);
-            parseInput(p);
             BeginMode2D(camera);
             em.render();
+            parseInput(p);
             EndMode2D();
             EndDrawing();
         }
