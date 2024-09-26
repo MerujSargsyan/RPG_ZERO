@@ -8,7 +8,7 @@ import static com.raylib.Jaylib.WHITE;
 public class App {
     public static final int WINDOW_WIDTH = 500;
     public static final int WINDOW_HEIGHT = 500;
-    private Camera2D camera;
+    public static Camera2D camera;
     private EntityManager em;
 
     public App() {
@@ -36,9 +36,9 @@ public class App {
         while(!WindowShouldClose()) {
             BeginDrawing();
             ClearBackground(WHITE);
-            parseInput(p);
             BeginMode2D(camera);
             em.render();
+            parseInput(p);
             EndMode2D();
             EndDrawing();
         }

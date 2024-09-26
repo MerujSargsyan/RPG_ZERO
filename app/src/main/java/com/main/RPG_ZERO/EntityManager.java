@@ -9,7 +9,7 @@ import static com.raylib.Jaylib.BLACK;
 import java.util.ArrayList;
 
 public class EntityManager {
-    private ArrayList<Entity> entities;
+    public ArrayList<Entity> entities;
     private Interaction im;
 
     public EntityManager() {
@@ -44,11 +44,11 @@ public class EntityManager {
             if(CheckCollisionRecs(currColl, obj.getInteractionBox())) {
                 obj.setColor(RED);
                 if(im == null && IsKeyPressed(KEY_E)) {
-                    im = new Interaction(obj);
-                    im.startInteraction(obj);
+                    im = new Interaction(obj, player.getPos());
+                    im.startInteraction();
                 }
                 if(im != null && im.active) {
-                    im.processInteraction(obj);
+                    im.processInteraction();
                     player.moveable = false;
                 } else if(im != null && !im.active) {
                     im = null;
