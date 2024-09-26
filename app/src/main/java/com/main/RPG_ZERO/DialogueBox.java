@@ -16,10 +16,13 @@ public class DialogueBox {
     }
 
     private void drawWindow() {
-        Rectangle outerRec = new Rectangle(25, App.WINDOW_HEIGHT - BOX_HEIGHT - 25,
-            BOX_WIDTH, BOX_HEIGHT);
-        Rectangle titleRec = new Rectangle(25, App.WINDOW_HEIGHT - BOX_HEIGHT - 25,
-            BOX_WIDTH, 50);
+        // TODO: use camera settings to fit rectangle
+        Vector2 offset = new Vector2(App.camera.offset().x(), App.camera.offset().y());
+        float x = offset.x() - App.WINDOW_WIDTH/3 - 25;
+        float y = offset.y() + App.WINDOW_WIDTH/4;
+
+         Rectangle outerRec = new Rectangle(x, y, BOX_WIDTH, BOX_HEIGHT);
+        Rectangle titleRec = new Rectangle(x, y, BOX_WIDTH, 50);
 
         DrawRectangleRec(outerRec, BLACK);
         DrawRectangleLinesEx(titleRec, 5.0f, YELLOW);
