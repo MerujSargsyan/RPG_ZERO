@@ -37,16 +37,16 @@ public class Interaction {
         }
 
         // TODO: figure out how to structure this
-        db = new DialogueBox(playerPos);
-        db.resetDialogue((NPC)ent);
+        db = new DialogueBox((NPC)ent);
+        db.resetDialogue();
     }
 
     public void processInteraction() {
         // TODO swich for this
-        if(IsKeyDown(KEY_ENTER)) db.flush((NPC)ent);
+        if(IsKeyDown(KEY_ENTER)) db.flush();
         if(db.done && IsKeyPressed(KEY_ENTER)) {
             active = false;
         }
-        db.step((NPC)ent);
+        db.step();
     }
 }
