@@ -1,12 +1,10 @@
 package com.main.RPG_ZERO;
 
 import static com.raylib.Raylib.*;
-import static com.raylib.Jaylib.Vector2;
 
 public class Interaction {
     public boolean active = false;
 
-    private Vector2 playerPos;
     private Entity ent;
     private InteractionType type;
     private DialogueBox db;
@@ -18,9 +16,8 @@ public class Interaction {
         COMBAT
     }
 
-    public Interaction(Entity ent, Vector2 playerPos) {
+    public Interaction(Entity ent) {
         this.ent = ent;
-        this.playerPos = playerPos;
     }
 
     public void startInteraction() {

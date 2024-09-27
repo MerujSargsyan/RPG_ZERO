@@ -44,7 +44,7 @@ public class EntityManager {
             if(CheckCollisionRecs(currColl, obj.getInteractionBox())) {
                 obj.setColor(RED);
                 if(im == null && IsKeyPressed(KEY_E)) {
-                    im = new Interaction(obj, player.getPos());
+                    im = new Interaction(obj);
                     im.startInteraction();
                 }
                 if(im != null && im.active) {
