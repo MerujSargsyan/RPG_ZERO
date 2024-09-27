@@ -46,6 +46,8 @@ public class App {
     }
 
     private void parseInput(Player p) {
+        if(IsKeyDown(KEY_I)) p.showInventory();
+
         Vector2 movement = new Vector2();
         if(IsKeyDown(KEY_D)) movement.x(1 * p.speed);
         if(IsKeyDown(KEY_A)) movement.x(-1 * p.speed);

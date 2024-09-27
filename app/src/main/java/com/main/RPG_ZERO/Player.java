@@ -9,6 +9,7 @@ public class Player implements Entity {
     private Vector2 pos;
     private Rectangle collisionBox;
     private Color col;
+    private Inventory inv;
 
     public Texture txt;
     public float speed;
@@ -20,6 +21,7 @@ public class Player implements Entity {
         pos = new Vector2(x, y);
         collisionBox = new Rectangle(x - PLAYER_SIZE/2, y - PLAYER_SIZE/2, 
             PLAYER_SIZE, PLAYER_SIZE);
+        inv = new Inventory(x, y);
         speed = 7.0f;
         col = BLUE;
         moveable = true;
@@ -31,6 +33,7 @@ public class Player implements Entity {
         pos.x((pos.x() + vect.x()));
         pos.y((pos.y() + vect.y()));
         collisionBox.x(pos.x()).y(pos.y());
+        inv.updatePosition(pos.x(), pos.y());
     }
 
     public void updatePosExact(Vector2 vect) {
@@ -47,6 +50,10 @@ public class Player implements Entity {
 
         collisionBox = new Rectangle(pos.x() - PLAYER_SIZE/2, pos.y() - PLAYER_SIZE/2, 
             PLAYER_SIZE, PLAYER_SIZE);
+    }
+
+    public void showInventory() {
+        inv.showInventory();
     }
 
     @Override
