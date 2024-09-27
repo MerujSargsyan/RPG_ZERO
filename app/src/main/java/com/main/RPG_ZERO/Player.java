@@ -6,15 +6,14 @@ import com.raylib.Jaylib.Rectangle;
 import static com.raylib.Jaylib.BLUE;
 
 public class Player implements Entity {
+    public State state;
+    public Texture txt;
+    public float speed;
+
     private Vector2 pos;
     private Rectangle collisionBox;
     private Color col;
     private Inventory inv;
-
-    public Texture txt;
-    public float speed;
-    public boolean moveable;
-
     private final int PLAYER_SIZE = 50; 
 
     public Player(float x, float y) {
@@ -24,7 +23,8 @@ public class Player implements Entity {
         inv = new Inventory(x, y);
         speed = 7.0f;
         col = BLUE;
-        moveable = true;
+
+        state = State.MOVING;
         // drawTexture
     }
 

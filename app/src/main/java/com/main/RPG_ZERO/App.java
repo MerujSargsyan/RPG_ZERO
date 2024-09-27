@@ -46,7 +46,14 @@ public class App {
     }
 
     private void parseInput(Player p) {
-        if(IsKeyDown(KEY_I)) p.showInventory();
+        if(IsKeyPressed(KEY_I) && p.state == State.MOVING) {
+            p.state = State.INVENTORY;
+            p.showInventory();
+        } else if(IsKeyPressed(KEY_I) && p.state == State.INVENTORY) {
+            p.state = State.MOVING;
+        } else if(p.state == State.INVENTORY) {
+            p.showInventory();
+        }
 
         Vector2 movement = new Vector2();
         if(IsKeyDown(KEY_D)) movement.x(1 * p.speed);
@@ -56,7 +63,8 @@ public class App {
 
         Vector2Normalize(movement);
         if(em.validateMovement(movement)) {
-            if(p.moveable) p.updatePos(movement);
+            if(p.state != State.MOVING) return;
+            p.updatePos(movement);
             camera.target(p.getPos());
         }
     }

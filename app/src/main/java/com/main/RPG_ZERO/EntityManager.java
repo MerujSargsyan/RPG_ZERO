@@ -46,13 +46,13 @@ public class EntityManager {
                 if(im == null && IsKeyPressed(KEY_E)) {
                     im = new Interaction(obj);
                     im.startInteraction();
+                    player.state = State.DIALOGUE;
                 }
                 if(im != null && im.active) {
                     im.processInteraction();
-                    player.moveable = false;
                 } else if(im != null && !im.active) {
                     im = null;
-                    player.moveable = true;
+                    player.state = State.MOVING;
                 }
             } else {
                 obj.setColor(BLACK);
