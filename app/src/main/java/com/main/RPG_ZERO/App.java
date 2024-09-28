@@ -13,11 +13,13 @@ public class App {
 
     private GraphicsManager graphicsM;
     private InputManager inputM;
+    private CollisionService collisionS;
     //private InteractionManager interactionM;
 
     public App() {
         graphicsM = new GraphicsManager();
-        inputM = new InputManager();
+        collisionS = new CollisionService(graphicsM);
+        inputM = new InputManager(collisionS);
         //interactionMM = new InteractionManager();
 
         graphicsM.addDrawable(player, State.MOVING);
@@ -29,7 +31,7 @@ public class App {
         while(!WindowShouldClose()) {
             BeginDrawing();
             ClearBackground(RAYWHITE);
-            inputM.parseInput(GetKeyPressed());
+            if(state == State.MOVING) inputM.parseMovement();
             graphicsM.draw();
             EndDrawing();
         }

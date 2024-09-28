@@ -3,35 +3,40 @@ package com.main.RPG_ZERO;
 import static com.raylib.Raylib.*;
 
 import com.raylib.Jaylib.Vector2;
+import com.raylib.Jaylib.Rectangle;;
 
 public class InputManager {
     private final int INTERACT_KEY = KEY_E;
-    private final int[] MOVEMENT_KEYS = new int[]{KEY_W, KEY_D, KEY_S, KEY_A};
+    private CollisionService collisionS; 
 
-    public void parseInput(int keyInput) {
-        if(keyInput == 0) return;
+    public InputManager(CollisionService collisionS) {
+        this.collisionS = collisionS;
+    } 
+
+    private boolean validMovement(Vector2 vect) {
+        Player p = App.player;
+        Rectangle rect = p.getCollisioRectangle();
+
+        Rectangle potential = new Rectangle(rect.x() + vect.x(), rect.y() + vect.y(),
+            rect.width(), rect.height());
+
+        return collisionS.checkCollision(potential);
+    }
+
+    @SuppressWarnings({"resource"})
+    public void parseMovement() {
+        Vector2 movement = new Vector2();
         Player player = App.player;
-        Vector2 movement = new Vector2(0, 0);
-        
-        switch(keyInput) {
-            case KEY_W:
-                movement.y(-1);
-                break;
-            case KEY_S:
-                movement.y(1);
-                break;
-            case KEY_A:
-                movement.x(-1);
-                break;
-            case KEY_D:
-                movement.x(1);
-                break;
-        }
 
-        System.out.println("" + movement.x() + " " + movement.y());
-        // Vector2Normalize(movement);
-        Vector2 newVect = App.rayVectorToJayVector(Vector2Add(player.position, movement));
-        player.position.x(newVect.x());
-        player.position.y(newVect.y());
+        if(IsKeyDown(KEY_D)) movement.x(1);
+        if(IsKeyDown(KEY_A)) movement.x(-1);
+        if(IsKeyDown(KEY_W)) movement.y(-1);
+        if(IsKeyDown(KEY_S)) movement.y(1);
+       
+        movement = App.rayVectorToJayVector(
+            Vector2Scale(Vector2Normalize(movement), player.speed)
+        );
+        if(!validMovement(movement)) return;
+        player.updatePosition(movement);
     }
 }
