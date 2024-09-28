@@ -39,4 +39,11 @@ public class InputManager {
         if(!validMovement(movement)) return;
         player.updatePosition(movement);
     }
+
+    public void parseInput(int key) {
+        if(key == INTERACT_KEY) {
+            State collType = collisionS.getCollisionType(App.player.getCollisioRectangle());
+            System.out.println(collType);
+        }
+    }
 }

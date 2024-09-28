@@ -32,6 +32,7 @@ public class App {
         while(!WindowShouldClose()) {
             BeginDrawing();
             ClearBackground(RAYWHITE);
+            inputM.parseInput(GetKeyPressed());
             if(state == State.MOVING) inputM.parseMovement();
             graphicsM.draw();
             EndDrawing();
@@ -44,7 +45,9 @@ public class App {
 
     private void addTestObjects() {
         Entity o1 = new Obstacle(10, 10, 200, 100);
+        Entity o2 = new Obstacle(300, 300,50, 50);
         graphicsM.addDrawable(o1, State.MOVING);
+        graphicsM.addDrawable(o2, State.MOVING);
     }
 
     public static void main(String[] args) {
