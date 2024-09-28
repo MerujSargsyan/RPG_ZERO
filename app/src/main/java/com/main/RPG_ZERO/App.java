@@ -43,7 +43,7 @@ public class App {
     }
 
     private void addTestObjects() {
-        Entity o1 = new Obstacle(0, 0, 200, 100);
+        Entity o1 = new Obstacle(10, 10, 200, 100);
         graphicsM.addDrawable(o1, State.MOVING);
     }
 
