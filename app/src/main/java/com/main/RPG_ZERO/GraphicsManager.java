@@ -23,4 +23,8 @@ public class GraphicsManager {
 
         arr.forEach((obj) -> obj.draw());
     }
+
+    public ArrayList<Drawable> getVisibleList() {
+        return map.get(App.state);
+    }
 }

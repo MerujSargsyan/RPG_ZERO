@@ -24,6 +24,7 @@ public class App {
 
         graphicsM.addDrawable(player, State.MOVING);
         graphicsM.addDrawable(player, State.DIALOGUE);
+        addTestObjects();
 
         InitWindow(WINDOW_SIZE, WINDOW_SIZE, "RPG_ZERO");
         SetTargetFPS(30);
@@ -39,6 +40,11 @@ public class App {
 
     public static Jaylib.Vector2 rayVectorToJayVector(Raylib.Vector2 vect) {
         return new Jaylib.Vector2(vect.x(), vect.y());
+    }
+
+    private void addTestObjects() {
+        Entity o1 = new Obstacle(0, 0, 200, 100);
+        graphicsM.addDrawable(o1, State.MOVING);
     }
 
     public static void main(String[] args) {
