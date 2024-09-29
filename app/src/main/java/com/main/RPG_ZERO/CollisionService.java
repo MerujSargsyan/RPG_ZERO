@@ -22,8 +22,8 @@ public class CollisionService {
             Entity collisionEntity = (Entity)obj;
 
             if(App.player != collisionEntity && 
-                CheckCollisionRecs(rect, collisionEntity.getCollisioRectangle())) {
-                collisionObj = collisionEntity.getCollisioRectangle();
+                CheckCollisionRecs(rect, collisionEntity.getCollisionRectangle())) {
+                collisionObj = collisionEntity.getCollisionRectangle();
             }
         }
 
@@ -33,20 +33,21 @@ public class CollisionService {
     // State return type is temporary
     public State getCollisionType(Rectangle rect) {
         ArrayList<Drawable> arr = graphicsM.getVisibleList();
-        Rectangle collisionObj = null;
+        Entity collisionEntity = null;
+
 
         for(Drawable obj : arr) { 
-            Entity collisionEntity = (Entity)obj;
+            Entity curr = (Entity)obj;
 
             if(App.player != collisionEntity && 
-                CheckCollisionRecs(rect, collisionEntity.getCollisioRectangle())) {
-                collisionObj = collisionEntity.getCollisioRectangle();
+                CheckCollisionRecs(rect, curr.getCollisionRectangle())) {
+                collisionEntity = curr;
             }
         }
 
-        if(collisionObj == null) return App.state;
+        if(collisionEntity == null) return App.state;
         // add other object instaces here
-        // if(collisionObj instanceof NPC) return State.DIALOGUE;
+        if(collisionEntity instanceof NPC) return State.DIALOGUE;
 
         return null;
     }

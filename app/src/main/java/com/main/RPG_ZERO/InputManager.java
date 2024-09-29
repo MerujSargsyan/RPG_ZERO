@@ -15,7 +15,7 @@ public class InputManager {
 
     private boolean validMovement(Vector2 vect) {
         Player p = App.player;
-        Rectangle rect = p.getCollisioRectangle();
+        Rectangle rect = p.getCollisionRectangle();
 
         Rectangle potential = new Rectangle(rect.x() + vect.x(), rect.y() + vect.y(),
             rect.width(), rect.height());
@@ -42,7 +42,7 @@ public class InputManager {
 
     public void parseInput(int key) {
         if(key == INTERACT_KEY) {
-            State collType = collisionS.getCollisionType(App.player.getCollisioRectangle());
+            State collType = collisionS.getCollisionType(App.player.getCollisionRectangle());
             System.out.println(collType);
         }
     }

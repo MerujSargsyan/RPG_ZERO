@@ -34,7 +34,7 @@ public class Player implements Entity {
     }
 
     @Override
-    public Rectangle getCollisioRectangle() {
+    public Rectangle getCollisionRectangle() {
         return collisionRect;
     }
 } 

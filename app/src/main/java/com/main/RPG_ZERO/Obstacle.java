@@ -15,7 +15,7 @@ public class Obstacle implements Entity {
     }
 
     @Override
-    public Rectangle getCollisioRectangle() {
+    public Rectangle getCollisionRectangle() {
         return collisionRect;
     }
 

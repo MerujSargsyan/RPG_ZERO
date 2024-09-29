@@ -44,8 +44,8 @@ public class App {
     }
 
     private void addTestObjects() {
-        Entity o1 = new Obstacle(10, 10, 200, 100);
-        Entity o2 = new Obstacle(300, 300,50, 50);
+        Entity o1 = new NPC(10, 10, 200, 100);
+        Entity o2 = new NPC(300, 300,50, 50);
         graphicsM.addDrawable(o1, State.MOVING);
         graphicsM.addDrawable(o2, State.MOVING);
     }
