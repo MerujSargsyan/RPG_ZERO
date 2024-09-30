@@ -37,4 +37,15 @@ public class Player implements Entity {
     public Rectangle getCollisionRectangle() {
         return collisionRect;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof Player)) return false;
+        return true;
+    }
+    
+    @Override
+    public Rectangle getInteractioRectangle() {
+        return null;
+    }
 } 

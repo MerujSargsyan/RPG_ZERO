@@ -17,13 +17,11 @@ public class App {
     //private InteractionManager interactionM;
 
     public App() {
-        graphicsM = new GraphicsManager();
+        graphicsM = new GraphicsManager(player);
         collisionS = new CollisionService(graphicsM);
         inputM = new InputManager(collisionS);
         //interactionMM = new InteractionManager();
 
-        graphicsM.addDrawable(player, State.MOVING);
-        graphicsM.addDrawable(player, State.DIALOGUE);
         addTestObjects();
 
         InitWindow(WINDOW_SIZE, WINDOW_SIZE, "RPG_ZERO");

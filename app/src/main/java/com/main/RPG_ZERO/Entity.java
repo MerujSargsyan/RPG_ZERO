@@ -4,4 +4,5 @@ import com.raylib.Jaylib.Rectangle;
 
 public interface Entity extends Drawable{
     public abstract Rectangle getCollisionRectangle();
+    public abstract Rectangle getInteractioRectangle();
 }

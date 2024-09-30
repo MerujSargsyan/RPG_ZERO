@@ -42,8 +42,8 @@ public class InputManager {
 
     public void parseInput(int key) {
         if(key == INTERACT_KEY) {
-            State collType = collisionS.getCollisionType(App.player.getCollisionRectangle());
-            System.out.println(collType);
+            Class<? extends Entity> e = collisionS.getCollisionType(App.player.getCollisionRectangle());
+            System.out.println(e);
         }
     }
 }

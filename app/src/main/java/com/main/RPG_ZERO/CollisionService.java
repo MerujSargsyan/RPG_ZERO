@@ -31,24 +31,23 @@ public class CollisionService {
     }
 
     // State return type is temporary
-    public State getCollisionType(Rectangle rect) {
+    public Class<? extends Entity> getCollisionType(Rectangle rect) {
         ArrayList<Drawable> arr = graphicsM.getVisibleList();
         Entity collisionEntity = null;
-
 
         for(Drawable obj : arr) { 
             Entity curr = (Entity)obj;
 
-            if(App.player != collisionEntity && 
-                CheckCollisionRecs(rect, curr.getCollisionRectangle())) {
+            if(CheckCollisionRecs(rect, curr.getInteractioRectangle())) {
                 collisionEntity = curr;
             }
         }
 
-        if(collisionEntity == null) return App.state;
+        //if(collisionEntity == null) return App.state;
         // add other object instaces here
-        if(collisionEntity instanceof NPC) return State.DIALOGUE;
+        //if(collisionEntity instanceof NPC) return State.DIALOGUE;
+        if(collisionEntity == null) return null;
 
-        return null;
+        return collisionEntity.getClass();
     }
 }
