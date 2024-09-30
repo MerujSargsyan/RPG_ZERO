@@ -14,12 +14,11 @@ public class NPC implements Entity {
     public NPC(float x, float y, float width, float height) {
         visibleRect = new Rectangle(x, y, width, height);
         collisionRect = visibleRect;
-        interactionRect = new Rectangle(x, y, width + 10, height + 10);
+        interactionRect = new Rectangle(x - 10, y - 10, width + 20, height + 20);
     }
 
     @Override
     public void draw() {
-        DrawRectangleRec(collisionRect, RED);
         DrawRectangleRec(visibleRect, BLACK);
     }
     
