@@ -8,9 +8,11 @@ import com.raylib.Jaylib.Rectangle;;
 public class InputManager {
     private final int INTERACT_KEY = KEY_E;
     private CollisionService collisionS; 
+    private InteractionManager interactionM;
 
     public InputManager(CollisionService collisionS) {
         this.collisionS = collisionS;
+        interactionM = null;
     } 
 
     private boolean validMovement(Vector2 vect) {
@@ -42,8 +44,11 @@ public class InputManager {
 
     public void parseInput(int key) {
         if(key == INTERACT_KEY) {
-            Class<? extends Entity> e = collisionS.getCollisionType(App.player.getCollisionRectangle());
-            System.out.println(e);
+            Entity e = collisionS.getCollisionType(App.player.getCollisionRectangle());
+            
+            if(e != null) {
+                interactionM = new InteractionManager(e);
+            }
         }
     }
 }

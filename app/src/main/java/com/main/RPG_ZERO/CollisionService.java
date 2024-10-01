@@ -31,7 +31,7 @@ public class CollisionService {
     }
 
     // State return type is temporary
-    public Class<? extends Entity> getCollisionType(Rectangle rect) {
+    public Entity getCollisionType(Rectangle rect) {
         ArrayList<Drawable> arr = graphicsM.getVisibleList();
         Entity collisionEntity = null;
 
@@ -43,11 +43,6 @@ public class CollisionService {
             }
         }
 
-        //if(collisionEntity == null) return App.state;
-        // add other object instaces here
-        //if(collisionEntity instanceof NPC) return State.DIALOGUE;
-        if(collisionEntity == null) return null;
-
-        return collisionEntity.getClass();
+        return collisionEntity;
     }
 }

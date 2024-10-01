@@ -2,7 +2,6 @@ package com.main.RPG_ZERO;
 
 import com.raylib.Jaylib.Rectangle;
 import static com.raylib.Jaylib.BLACK;
-import static com.raylib.Jaylib.RED;
 
 import static com.raylib.Raylib.*;
 

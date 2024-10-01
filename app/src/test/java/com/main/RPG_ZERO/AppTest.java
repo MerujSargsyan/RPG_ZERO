@@ -4,6 +4,6 @@ import org.junit.jupiter.api.Test;
 
 class AppTest {
     @Test void windowDisplays() {
-        new App(m);
+        new App();
     }
 }
