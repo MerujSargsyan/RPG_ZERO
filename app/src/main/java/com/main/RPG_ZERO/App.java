@@ -11,7 +11,7 @@ public class App {
     public static int WINDOW_SIZE = 500;
     public static Player player = new Player();
 
-    private GraphicsManager graphicsM;
+    public static GraphicsManager graphicsM;
     private InputManager inputM;
     private CollisionService collisionS;
     //private InteractionManager interactionM;
@@ -31,7 +31,12 @@ public class App {
             BeginDrawing();
             ClearBackground(RAYWHITE);
             inputM.parseInput(GetKeyPressed());
-            if(state == State.MOVING) inputM.parseMovement();
+            if(state == State.MOVING) {
+                inputM.parseMovement();
+            } else {
+                // TODO: move interaction manager to App
+                inputM.stepInteraction();
+            }
             graphicsM.draw();
             EndDrawing();
         }

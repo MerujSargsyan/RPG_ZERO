@@ -10,10 +10,25 @@ public class NPC implements Entity {
     private Rectangle collisionRect;
     private Rectangle interactionRect;
 
+    public String dialogue;
+    private int currentChar;
+
     public NPC(float x, float y, float width, float height) {
         visibleRect = new Rectangle(x, y, width, height);
         collisionRect = visibleRect;
         interactionRect = new Rectangle(x - 10, y - 10, width + 20, height + 20);
+
+        currentChar = 0;
+        dialogue = "HELLO WORLD";
+    }
+
+    public char nextChar() {
+        if(currentChar >= dialogue.length()) return '\0';
+        return dialogue.charAt(currentChar++);
+    }
+
+    public String getFinalDialogue() {
+        return dialogue;
     }
 
     @Override

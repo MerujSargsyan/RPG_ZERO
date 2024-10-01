@@ -3,7 +3,7 @@ package com.main.RPG_ZERO;
 import static com.raylib.Raylib.*;
 
 import com.raylib.Jaylib.Vector2;
-import com.raylib.Jaylib.Rectangle;;
+import com.raylib.Jaylib.Rectangle;
 
 public class InputManager {
     private final int INTERACT_KEY = KEY_E;
@@ -12,7 +12,7 @@ public class InputManager {
 
     public InputManager(CollisionService collisionS) {
         this.collisionS = collisionS;
-        interactionM = null;
+        interactionM = new InteractionManager();
     } 
 
     private boolean validMovement(Vector2 vect) {
@@ -45,10 +45,15 @@ public class InputManager {
     public void parseInput(int key) {
         if(key == INTERACT_KEY) {
             Entity e = collisionS.getCollisionType(App.player.getCollisionRectangle());
-            
-            if(e != null) {
-                interactionM = new InteractionManager(e);
-            }
+            if(e == null) return;
+            if(!interactionM.isActive) interactionM.beginInteraction(new Entity[]{e}, State.DIALOGUE);
+            return;
         }
+
+        if(interactionM.isActive) interactionM.parseInput(key);
+    }
+
+    public void stepInteraction() {
+        interactionM.step();
     }
 }
