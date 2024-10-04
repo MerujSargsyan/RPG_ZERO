@@ -6,22 +6,26 @@ public class DialogueInteraction implements Interaction {
     private NPC npc;
     private String dialogue;
     private String finishedDialogue;
+    private DialogueBox db;
 
     public DialogueInteraction(NPC e) {
         npc = e;
         dialogue = "";
         finishedDialogue = e.dialogue;
+        db = new DialogueBox();
+
+        start();
     }
 
     @Override
     public void start() {
         // add interaction box
+        App.graphicsM.addDrawable(db, State.DIALOGUE);
     }
 
     @Override
     public void step() {
-        if(!finished()) dialogue += npc.nextChar();
-        System.out.println(dialogue);
+        if(!finished()) db.updateText(npc.nextChar());
     }
 
     @Override
