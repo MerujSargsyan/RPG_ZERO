@@ -35,8 +35,15 @@ public class DialogueInteraction implements Interaction {
 
     @Override 
     public void parseInput(int key) {
+        if(finished() && key == KEY_ENTER) {
+            App.state = State.MOVING;
+            return;
+        }
+
         if(key == KEY_ENTER) {
-            while(dialogue.length() != finishedDialogue.length()) dialogue += npc.nextChar();
+            dialogue = finishedDialogue;
+            db.resetText();
+            db.setText(finishedDialogue);
         }
     }
 

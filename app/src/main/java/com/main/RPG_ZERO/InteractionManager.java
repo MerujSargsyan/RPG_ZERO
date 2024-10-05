@@ -45,6 +45,11 @@ public class InteractionManager {
 
     public void parseInput(int key) {
         if(interaction == null || !isActive) return;
+        if(interaction.finished()) {
+            isActive = false;
+            App.state = State.MOVING;
+            return;
+        } 
         interaction.parseInput(key);
     }
 

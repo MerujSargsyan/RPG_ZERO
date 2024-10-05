@@ -19,7 +19,7 @@ public class NPC implements Entity {
         interactionRect = new Rectangle(x - 10, y - 10, width + 20, height + 20);
 
         currentChar = 0;
-        dialogue = "HELLO WORLD";
+        dialogue = "This is just a test if I can speed up the interaction by \n pressing ENTER";
     }
 
     public char nextChar() {

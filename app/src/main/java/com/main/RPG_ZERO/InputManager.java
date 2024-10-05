@@ -43,7 +43,7 @@ public class InputManager {
     }
 
     public void parseInput(int key) {
-        if(key == INTERACT_KEY) {
+        if(key == INTERACT_KEY && App.state == State.MOVING) {
             Entity e = collisionS.getCollisionType(App.player.getCollisionRectangle());
             if(e == null) return;
             if(!interactionM.isActive) interactionM.beginInteraction(new Entity[]{e}, State.DIALOGUE);

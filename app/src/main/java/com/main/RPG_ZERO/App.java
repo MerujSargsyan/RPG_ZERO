@@ -39,7 +39,10 @@ public class App {
             }
             graphicsM.draw();
             EndDrawing();
+            System.out.println(App.state);
         }
+
+        CloseWindow();
     }
 
     public static Jaylib.Vector2 rayVectorToJayVector(Raylib.Vector2 vect) {

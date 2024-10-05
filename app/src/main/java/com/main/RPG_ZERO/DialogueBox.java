@@ -24,6 +24,10 @@ public class DialogueBox implements Drawable {
         currentText += toAppend;
     }
 
+    public void setText(String text) {
+        currentText = text;
+    }
+
     public void resetText() {
         currentText = "";
     }
